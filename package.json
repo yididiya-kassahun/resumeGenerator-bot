@@ -1,0 +1,17 @@
+{
+  "name": "resumegenerator-bot",
+  "version": "1.0.0",
+  "description": "telegram bot generate resume and send link back to the user",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "yididiya k.",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.6.3",
+    "node-telegram-bot-api": "^0.64.0",
+    "nodemon": "^3.0.1"
+  }
+}
