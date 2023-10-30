@@ -1,8 +1,8 @@
 const express = require("express");
 
-const resumeController = require("../controllers/resumeController");
-const router = express.Router();
+ const resumeController = require("../controllers/resume");
+ const router = express.Router();
 
-router.get('/resume.detail', resumeController.getResumeURL);
+router.get('/get.resume/:chatId', resumeController.getResumeURL);
 
 module.exports = router;

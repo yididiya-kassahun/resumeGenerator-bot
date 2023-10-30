@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const resumeSchema = new Schema({
+   chatId: {
+    type: String,
+    required:true
+    },
    fullName: {
     type: String,
     required:true
@@ -21,6 +25,10 @@ const resumeSchema = new Schema({
    },
    phone: {
     type: String,
+    required:true
+   },
+   address:{
+    type:String,
     required:true
    }
 });

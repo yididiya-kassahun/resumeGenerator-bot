@@ -9,6 +9,7 @@
   "author": "yididiya k.",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "mongoose": "^7.6.3",
     "node-telegram-bot-api": "^0.64.0",
