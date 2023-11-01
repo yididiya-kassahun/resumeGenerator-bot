@@ -5,4 +5,7 @@ const express = require("express");
 
 router.get('/get.resume/:chatId', resumeController.getResumeURL);
 
+router.get('/resumePDF/:id', resumeController.resumePDF);
+router.get('/generate.pdf/:id', resumeController.generatePDF);
+
 module.exports = router;

@@ -7,9 +7,13 @@ const resumeSchema = new Schema({
     type: String,
     required:true
     },
-    photoURL:{
+   photoURL:{
     type: String,
     required:true
+    },
+   aboutMe:{
+   type:String,
+   required:true
     },
    fullName: {
     type: String,
@@ -34,7 +38,34 @@ const resumeSchema = new Schema({
    address:{
     type:String,
     required:true
-   }
+   },
+   professionalSkills:[
+      {
+         title:[],
+         skillLevel: [],
+      }
+   ],
+   // workExperience:[
+   //    {
+   //       title:String,
+   //       interval:String,
+   //       keyAchievement:String,
+   //       required:true
+   //    }
+   // ],
+   // Education:[
+   //    {
+   //       title:String,
+   //       interval:String,
+   //       detail:String,
+   //       required:true
+   //    }
+   // ],
+   // softSkills:[
+   //    {
+   //       skillName:String
+   //    }
+   // ]
 });
 
 module.exports = mongoose.model('resume',resumeSchema);

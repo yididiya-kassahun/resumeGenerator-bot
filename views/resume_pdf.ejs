@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="/css/mdb.min.css?ver=1.2.1" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" integrity="sha512-aQX0wElRuvqZ1bVvsknO9jDXwvVI71vwYLuEDZ8QqMJxPozZPPCCmylpHx4ngmeIz7Bg6FfE4Ay+CfDVFqjy+A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <title>My Digital Resume</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.profile-picture img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    border-bottom: 2px solid #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.job, .degree {
+    margin: 10px 0;
+}
+
+a {
+    color: #030303;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.card {
+    width:100%;
+    background-color: #fff;
+    box-shadow:0 5px 8px rgba(91, 90, 90, 0.5);
+    overflow: hidden;
+    margin-top: 5%;
+    padding: 3%;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+.grid-container {
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    width: 50%;
+    padding: 20px;
+}
+.icon{
+    padding: 5px;
+}
+
+.icon label{
+    margin-left: 15px;
+}
+.progress-container {
+            width: 100%;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 30px;
+            background-color: #007bff;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+/* Timeline custom component */
+.timeline-card {
+  position: relative;
+  margin-left: 16px; }
+
+.timeline-card:before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  top: 16px;
+  left: -12px;
+  border: 5px solid;
+  z-index: 2; }
+
+html {
+  scroll-behavior: smooth; }
+
+html, body {
+  overflow-x: hidden; }
+
+.container {
+  max-width: 1140px; }
+
+.site-title {
+  font-size: 1.25rem;
+  line-height: 2.5rem; }
+
+.cover {
+  height: 500px; }
+
+.cover > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: auto; }
+
+.progress-bar {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1px; }
+
+.text-small {
+  font-size: 0.85rem; }
+
+.text-teal {
+  color: var(--bs-teal); }
+.h4{
+  font-size: 18px;
+  font-weight: bold;
+}
+.experience-interval{
+  font-style: italic;
+}
+@media (min-width: 48em) {
+  .site-title {
+    float: left; }
+  .site-nav {
+    float: right; } }
+
+@media (max-width: 767px) {
+  /* disable animations on mobile */
+  [data-aos] {
+    opacity: 1 !important;
+    transform: translate(0) scale(1) !important; }
+  .p-5 {
+    padding: 2.5rem 2rem !important; }
+  .portfolio-section .m-5 {
+    margin: 2rem 0 1rem !important; }
+  .portfolio-reverse {
+    flex-direction: column-reverse; }
+  .portfolio-reverse .text-end {
+    text-align: start !important; } }
+
+@media print {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: translate(0) scale(1) !important; }
+  body.bg-light {
+    background-color: #fff !important; }
+  .container {
+    width: auto;
+    max-width: 100%;
+    padding: 0; }
+  .cover {
+    height: 360px;
+    margin-bottom: 1.5rem; }
+  .cover > img {
+    display: none; }
+  .shadow-1-strong {
+    box-shadow: none !important; }
+  .resume-container > .my-5 {
+    margin: 0 !important; }
+  .my-5.p-5 {
+    padding: 1.5rem 0 !important; }
+  .about-section {
+    padding: 0 !important; }
+  .skills-section,
+  .work-experience-section,
+  .education-section,
+  .portfolio-section,
+  .reference-section,
+  .contact-section {
+    padding: 10 !important; }
+  .page-break {
+    padding-top: 5rem;
+    page-break-before: always; } }
+
+    </style>
+</head>
+<body class="bg-light" id="top">
+    <div class="page-content">
+    <div class="container">
+
+        <header class="header">
+            <div class="profile-picture">
+                <img src="https://leonamarketinggroup.com/wp-content/uploads/2022/11/brett.jpg" alt="Your Photo">
+            </div>
+            <div class="header-content">
+                <h1> yididiya k. </h1>
+                <p><%= resume.jobTitle %></p>
+               <img src="/icons/linkedin.svg" width="3%" height="3%">
+               <img src="/icons/github.svg" width="3%" height="3%">
+            </div>
+        </header>
+   
+            <div class="grid-container">
+                <div class="column">
+                    <h2>About Me</h2>
+                    <p>Hello! I’m Walter Patterson. I am passionate about UI/UX design and Web Design. I am a skilled front-end developer 
+                        and master of graphic design tools such as Photoshop and Sketch. I am a quick learner and a team worker that gets 
+                        the job done.</p>
+                </div>
+                <div class="column">
+                    <section class="contact">
+                        <h2>Contact Information</h2>
+                        <div class="icon">
+              <img src="/icons/calendar.svg" width="3%" height="3%"><label>Age: <%= resume.age %> </label>
+                      </div>
+                         <div class="icon">
+              <img src="/icons/envelope.svg" width="3%" height="3%"><label>Email:<%= resume.email %>  </label>
+                        </div>
+                        <div class="icon">
+              <img src="/icons/phone.svg" width="3%" height="3%"><label>Phone:<%= resume.phone %> </label> 
+                        </div>
+                        <div class="icon">
+                            <img src="/icons/address.svg" width="3%" height="3%"><label>Address :<%= resume.address %> </label>
+                                      </div>
+        
+                    </section>
+                </div>
+            </div>
+
+    <div class="skills-section">
+        <h2 class="h2 fw-light mb-4">Professional Skills</h2>
+        <div class="row">
+          <div class="progress-container">
+            <div class="mb-3"><span class="fw-bolder">Adobe Photoshop</span>
+              <div class="progress-bar" style="height: 15px">
+              </div>
+            </div>
+            </div>
+            <div class="progress-container">
+              <div class="mb-3"><span class="fw-bolder">Adobe Photoshop</span>
+                <div class="progress-bar" style="height: 15px">
+                </div>
+              </div>
+              </div>
+         
+          <div class="progress-container">
+            <div class="mb-3"><span class="fw-bolder">Adobe Photoshop</span>
+              <div class="progress-bar" style="height: 15px">
+              </div>
+            </div>
+            </div>
+            <div class="progress-container">
+              <div><span class="fw-bolder">Adobe Photoshop</span>
+                <div class="progress-bar" style="height: 15px">
+                </div>
+              </div>
+              </div>
+            </div>
+      </div>
+
+    <div class="work-experience-section">
+      <h2 class="h2 fw-light mb-4">Work Experience</h2>
+      <div>
+          <div class="timeline-head px-4 pt-3">
+            <div class="h4">Frontend Developer <span class="text-muted">at Creative Agency</span></div>
+          </div>
+          <div class="timeline-body px-4 pb-4">
+            <div class="experience-interval">May, 2015 - Present</div>
+            <div>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</div>
+          </div>
+       <br>
+          <div class="timeline-head px-4 pt-3">
+            <div class="h4">Graphic Designer <span class="text-muted">at Design Studio</span></div>
+          </div>
+          <div class="timeline-body px-4 pb-4">
+            <div class="experience-interval">June, 2013 - May, 2015</div>
+            <div>Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</div>
+          </div>
+      
+      </div>
+    </div>
+ 
+  <section class="education">
+        <div class="h5"><h2>Education</h2> </div>      
+        <div class="degree">
+            <div class="h5">   <h3>Bachelor of Science in Computer Science</h3> </div>
+            <p>University of Example</p>
+            <p>Graduated: May 2020</p>
+        </div>
+
+  <!-- <div class="highschool">
+            <div class="h5"><h3>Secondery School</h3> </div>
+            <p>St. merry secondary school</p>
+            <p>Graduated: May 2016</p>
+        </div> -->
+
+</section>
+
+    <section class="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li># HTML/CSS</li>
+            <li># JavaScript</li>
+            <li># React</li>
+            <li># Node.js</li>
+            <li># Responsive Design</li>
+        </ul>
+    </section>
+
+</div>
+</div>
+</body>
+</html>

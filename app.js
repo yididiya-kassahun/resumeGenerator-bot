@@ -39,7 +39,7 @@ function startMenu(msg) {
   const opts = {
     reply_markup: JSON.stringify({
       keyboard: [
-        [{ text: "👨🏽‍💻 Generate Resume" }, { text: "👨🏽‍💻 developer" }],
+        [{ text: "📄 Generate Resume" }, { text: "👨🏽‍💻 developer" }],
         [{ text: "🗑️ Delete Resume" }, { text: "🔙 Back" }],
       ],
       resize_keyboard: true,
@@ -58,7 +58,7 @@ bot.onText(/Generate Resume/, (msg) => {
 });
 
 bot.onText(/Delete Resume/, (msg) => {
-  deleteResume(msg);
+  deleteResume(msg.chat.id);
 });
 
 // Define a conversation state object to store user inputs
@@ -68,12 +68,17 @@ function askDetails(msg) {
   conversationState[msg.chat.id] = {
     step: 1, // Current step in the conversation
     photoURL: "",
+    aboutMe: "",
     fullName: "",
     jobTitle: "",
     age: "",
     email: "",
     phone: "",
     address: "",
+    professionalSkill:{
+      title:"",
+      skillLevel:""
+    }
   };
 
   askPhoto(msg.chat.id);
@@ -83,6 +88,13 @@ function askPhoto(chatId) {
     reply_markup: { force_reply: true },
   });
 }
+
+function askAboutMe(chatId) {
+  bot.sendMessage(chatId, "Enter some details about you:", {
+    reply_markup: { force_reply: true },
+  });
+}
+
 function askFullName(chatId) {
   bot.sendMessage(chatId, "Enter your full name:", {
     reply_markup: { force_reply: true },
@@ -113,6 +125,19 @@ function askPhone(chatId) {
 
 function askAddress(chatId) {
   bot.sendMessage(chatId, "Enter your Address:", {
+    reply_markup: { force_reply: true },
+  });
+}
+
+// Define a function to start the conversation
+function askProfessionalSkillTitle(chatId) {
+  bot.sendMessage(chatId, "Enter your professional skill:", {
+    reply_markup: { force_reply: true },
+  });
+}
+
+function askProfessionalSkillLevel(chatId) {
+  bot.sendMessage(chatId, "Enter your professional skill level:", {
     reply_markup: { force_reply: true },
   });
 }
@@ -197,39 +222,54 @@ bot.on("message", (msg) => {
           case 1:
             userState.photoURL = path;
             userState.step++;
-            askFullName(chatId);
+            askAboutMe(chatId);
             break;
           case 2:
+            userState.aboutMe = msg.text;
+            userState.step++;
+            askFullName(chatId);
+            break;
+          case 3:
             userState.fullName = msg.text;
             userState.step++;
             askJobTitle(chatId);
             break;
-          case 3:
+          case 4:
             userState.jobTitle = msg.text;
             userState.step++;
             askAge(chatId);
             break;
-          case 4:
+          case 5:
             userState.age = msg.text;
             userState.step++;
             askEmail(chatId);
             break;
-          case 5:
+          case 6:
             userState.email = msg.text;
             userState.step++;
             askPhone(chatId);
             break;
-          case 6:
+          case 7:
             userState.phone = msg.text;
             userState.step++;
             askAddress(chatId);
             break;
-          case 7:
+          case 8:
             userState.address = msg.text;
+            userState.step++;
+            askProfessionalSkillTitle(chatId);
+            break;
+          case 9:
+            userState.professionalSkill.title = msg.text;
+            userState.step++;
+            askProfessionalSkillLevel(chatId);
+            break;
+          case 10:
+            userState.professionalSkill.skillLevel = msg.text;
             userState.step++;
 
             // You now have all the user inputs in userState
-            const { photoURL, fullName, jobTitle, age, email, phone, address } =
+            const { photoURL,aboutMe, fullName, jobTitle, age, email, phone, address,professionalSkill } =
               userState;
             console.log(
               "console log ... " + photoURL,
@@ -238,17 +278,20 @@ bot.on("message", (msg) => {
               age,
               email,
               phone,
-              address
+              address,
+              professionalSkill
             );
             const dataResult = addResumeDetail(
               chatId,
               photoURL,
+              aboutMe,
               fullName,
               jobTitle,
               age,
               email,
               phone,
-              address
+              address,
+              professionalSkill
             );
 
             if (dataResult) {
@@ -257,7 +300,7 @@ bot.on("message", (msg) => {
                 "profile exist. please delete it to create another"
               );
             } else {
-              const link = `https://3ba7-196-189-243-16.ngrok-free.app/get.resume/${chatId}`; // test it with ngrok
+              const link = `https://bb0e-196-189-243-16.ngrok-free.app/get.resume/${chatId}`; // test it with ngrok
 
               bot.sendMessage(
                 msg.chat.id,
@@ -300,15 +343,18 @@ bot.onText(/back/, (msg) => {
 function addResumeDetail(
   chatId,
   photoURL,
+  aboutMe,
   fullName,
   jobTitle,
   age,
   email,
   phone,
-  address
+  address,
+  professionalSkill
 ) {
   const ChatId = chatId.toString();
   const PhotoURL = photoURL.toString();
+  const AboutMe = aboutMe.toString();
   const FullNamee = fullName.toString();
   const JobTitle = jobTitle.toString();
   const Age = age.toString();
@@ -316,9 +362,12 @@ function addResumeDetail(
   const Phone = phone.toString();
   const Address = address.toString();
 
-  console.log("full name" + FullNamee);
+  const proSkills = {
+      title: professionalSkill.title.split(','),
+      skillLevel: professionalSkill.skillLevel.split(',')
+  };
 
-  let state;
+  console.log('professional sk '+ proSkills);
 
   ResumeDetail.findOne({ chatId: ChatId }).then((result) => {
     if (result) {
@@ -327,14 +376,17 @@ function addResumeDetail(
       const details = new ResumeDetail({
         chatId: ChatId,
         photoURL: PhotoURL,
+        aboutMe:AboutMe,
         fullName: FullNamee,
         jobTitle: JobTitle,
         age: Age,
         email: Email,
         phone: Phone,
         address: Address,
+        professionalSkills: proSkills
       });
-
+      
+     // result.professionalSkills.push(proSkills);
       details.save();
       return (state = false);
     }
@@ -362,7 +414,16 @@ function sendBase64File(chatId, base64Data, filename) {
 }
 
 function deleteResume(chatId) {
-  //  ResumeDetail.findOne({chat})
+  const ChatId = chatId.toString();
+
+    ResumeDetail.findOne({chatId:ChatId})
+    .then(resume=> {
+      resume.deleteOne();
+      bot.sendMessage(chatId,'resume deleted successfully');
+    })
+    .catch(err=> {
+      console.log(err);
+    })
 }
 
 mongoose
