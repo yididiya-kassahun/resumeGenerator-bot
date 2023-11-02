@@ -20,9 +20,9 @@
     </noscript>
 </head>
 <body class="bg-light" id="top">
+
     <div class="page-content">
     <div class="container">
-    <!-- <div class="card"> -->
         <header class="header">
             <div class="profile-picture">
                 <img src="https://leonamarketinggroup.com/wp-content/uploads/2022/11/brett.jpg" alt="Your Photo">
@@ -42,32 +42,48 @@
         </header>
     <!-- </div> -->
    
- <div class="shadow-1-strong bg-white my-5 p-5">
-            <div class="grid-container">
-                <div class="column">
+ <div class="shadow-1-strong bg-white my-5 p-5" id="about">
+     <div class="about-section">
+       <div class="row">
+            <!-- <div class="grid-container"> -->
+                <div class="col-md-6">
                     <h2>About Me</h2>
                     <p><%= resumeData.aboutMe %></p>
                 </div>
-                <div class="column">
-                    <section class="contact">
-                        <h2>Contact Information</h2>
-                        <div class="icon">
-              <img src="/icons/calendar.svg" width="3%" height="3%"><label>Age: <%= resumeData.age %> </label>
-                      </div>
-                         <div class="icon">
-              <img src="/icons/envelope.svg" width="3%" height="3%"><label>Email: <%= resumeData.email %> </label>
-                        </div>
-                        <div class="icon">
-              <img src="/icons/phone.svg" width="3%" height="3%"><label>Phone: <%= resumeData.phone %></label> 
-                        </div>
-                        <div class="icon">
-                            <img src="/icons/address.svg" width="3%" height="3%"><label>Address : <%= resumeData.address %></label>
-                                      </div>
-        
-                    </section>
-                </div>
-            </div>
-            </div>
+          <div class="col-md-5 offset-lg-1">
+            <div class="row mt-2">
+                    <h2>Bio</h2>
+              <div class="icon col-sm-5">
+                 <div class="pb-2 fw-bolder"> <img src="/icons/calendar.svg" width="20px" height="20px"> Age:  </div> 
+               </div>
+              <div class="col-sm-7">
+                 <div class="pb-2"><%= resumeData.age %></div>
+              </div>
+              <div class="icon col-sm-5">
+                <div class="pb-2 fw-bolder"> <img src="/icons/envelope.svg" width="20px" height="20px"> Email: </div> 
+              </div>
+               <div class="col-sm-7">
+                 <div class="pb-2"><%= resumeData.email %></div>
+              </div>
+              <div class=" col-sm-5">
+                 <div class="pb-2 fw-bolder"><img src="/icons/phone.svg" width="20px" height="20px"> Phone: </div>
+              </div>
+               <div class="col-sm-7">
+                 <div class="pb-2"><%= resumeData.phone %></div>
+              </div>
+              <div class="col-sm-5">
+                   <div class="pb-2 fw-bolder"><img src="/icons/address.svg" width="20px" height="20px"> Address :</div>
+              </div>
+               <div class="col-sm-7">
+                 <div class="pb-2"><%= resumeData.address %></div>
+              </div>
+           </div>
+        </div>
+           <!-- </div> -->
+      </div>
+    </div>
+   </div>
+
 <div class="shadow-1-strong bg-white my-5 p-5">
     <div class="skills-section">
         <h2 class="h2 fw-light mb-4">Professional Skills</h2>
